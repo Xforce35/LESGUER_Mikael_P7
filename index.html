@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="public/assets/logo1.png">
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <script src="https://kit.fontawesome.com/bcfded1c34.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <title>Les petits plats</title>
+</head>
+<body>
+    <header>
+        <h1 aria-label="logo Les petits plats" tabindex="1">
+            <img class="logo logo1" src="public/assets/logo1.png" alt="logo les petits plats" aria-label="logo les petits plats"/>
+            <img class="logo" src="public/assets/les_petits_plats.png" alt="logo les petits plats" aria-label="logo les petits plats"/>
+        </h1>
+    </header>
+    <nav>
+        <div class="searchbar">
+            <input type="search" name="search" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette" tabindex="1" id="search" autocomplete='off' aria-label="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+                <i class="fas fa-search">
+                </i>
+        </div>
+
+        <div id="tagList">
+        </div>
+        <div id="filters"></div>
+        
+        <!-- <div id="box-appareils" class="boxList" tabindex="1">
+            <span class="list-appareils padding title">Appareils</span>
+                <i class="fas fa-chevron-down movechevron">
+                </i>
+                <input type="text" name="appliance" id="search-appareils" class="hide search"
+                            placeholder="Rechercher un appareil">
+            <div id="listAppareils" class="list">
+                <ul class="search-list-appareils"></ul>
+            </div>
+        </div>
+        <div id="box-ustensiles" class="boxList" tabindex="1">
+            <span class="list-ustensiles padding title">Ustensiles</span>
+                <i class="fas fa-chevron-down movechevron">
+                </i>
+                <input type="text" name="ustensils" id="search-ustensils" class="hide search"
+                            placeholder="Rechercher un ustensile">
+            <div id="listUstensiles" class="list">
+                <ul class="search-list-ustensils"></ul>
+            </div>
+        </div> -->
+        <div id="no-results">Aucune recette ne correspond à votre critère...<br> Vous pouvez chercher "tarte aux pommes", "poisson", etc.</div>
+    </nav>
+    <main>
+        <div id="recipes" tabindex="1">
+        </div>
+
+    </main>
+ <script src="./public/script/index.js" type="module"></script>
+
+
+</body>
+</html>
+
+<style>
+    .hidden {display: none;}
+</style>
