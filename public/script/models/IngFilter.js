@@ -17,7 +17,7 @@ class IngFilter extends Filter
         recipes.forEach(recipe => {
             // console.log(recipe);
             recipe.ingredients.forEach((ingredient) => {
-                console.log(ingredient);
+                // console.log(ingredient);
                 let item = ingredient.ingredient.toLowerCase();
                 if (!this.all.includes(item)) {
                     this.all.push(item);
