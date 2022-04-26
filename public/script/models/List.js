@@ -5,6 +5,7 @@ class list
     constructor()
     {
         this.all = [];
+        this.filters = [];
     }
 
     hydrate(recipes)
@@ -26,19 +27,16 @@ class list
             document.getElementById("recipes").innerHTML = html
     }
 
-    // listIngredient(recipes)
-    // {
-    //     let listIngr = []
-    //     recipes.forEach (recipe => {
-    //         recipe.ingredients.forEach((ingredient) => {
-    //             let item = ingredient.ingredient.toLowerCase();
-    //             if (!listIngr.includes(item)) {
-    //                 listIngr.push(item);
-    //             }
-    //             console.log(item, listIngr);
-    //         })
-    //     })
-    // }
+    addFilter(filter)
+    {
+        this.filters.push(filter);
+        filter.build()
+    }
+
+    filter()
+    {
+        //this.filters.
+    }
 }
 
 export default list;

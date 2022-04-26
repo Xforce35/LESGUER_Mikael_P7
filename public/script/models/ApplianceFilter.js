@@ -14,47 +14,40 @@ class ApplianceFilter extends Filter
     { 
         this.all = [];
         recipes.forEach(recipe => {
-            console.log(recipe.appliance.length());
-           
-            recipe.appliance.length(() => {
-                console.log(appliance);
-                let item = appliance.toLowerCase();
-                if (!this.all.includes(item)) {
-                    this.all.push(item);
-                } 
-                console.log(this.all);
-            })
+            this.all.push(recipe.appliance.toLowerCase());
+            // console.log(recipe.appliance);
         })
     }
 
     // trouver toutes les recettes avec tous les ingrédients séléctionnés
-    // filter(recipes)
-    // {
-    //     let list = [];
-    //     if (this.selection.length === 0) {
-    //         return recipes;
-    //     }
-    //     list = this.list.all.filter((recipe) => {
-    //         let listIngredients = recipe.ingredients.map((item) =>
-    //         item.ingredient.toLowerCase()
-    //         );
+    filter(recipes)
+    {
+        let list = [];
+        if (this.selection.length === 0) {
+            return recipes;
+        }
+        list = this.list.all.filter((recipe) => {
+            console.log(recipe.appliance.map(item));
+            // let listAppliance = recipe.appliance.map((item) =>
+            // item.appliance.toLowerCase()
+            // );
 
-    //         let count = 0;
+            // let count = 0;
 
-    //         this.selection.forEach((ingSelect) => {
-    //             if (listIngredients.includes(ingSelect.toLowerCase())) {
-    //                 count++;
-    //             }
-    //         });
+            // this.selection.forEach((applianceSelect) => {
+            //     if (listAppliance.includes(applianceSelect.toLowerCase())) {
+            //         count++;
+            //     }
+            // });
 
-    //         if (count == this.selection.length) {
-    //             return true;
-    //         }
-    //         return false;
-    //     });
+            // if (count == this.selection.length) {
+            //     return true;
+            // }
+            // return false;
+        });
 
-    //     return list;
-    // }
+        return list;
+    }
 }
 
 export default ApplianceFilter;

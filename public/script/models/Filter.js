@@ -12,20 +12,63 @@ class Filter
         this.searchTerm = '';
        
     }
+    
+    async build()
+    {
+        await this.dropdown();
+        this.buildSelection();
+        this.collect(this.list.all);
+        this.display();
+        // this.showSelection();
+        this.openDropdown();
+        this.closeDropdown();
+        await this.display();
+        this.listenForTagSelection();
+        this.listenForInput();
+    }
 
-    collect(recipes)
-    { 
-        this.all = [];
-        recipes.forEach(recipe => {
-            // console.log(recipe);
-            recipe.ingredients.forEach((ingredient) => {
-                // console.log(ingredient);
-                let item = ingredient.ingredient.toLowerCase();
-                if (!this.all.includes(item)) {
-                    this.all.push(item);
-                }
+    buildSelection()
+    {
+        document.getElementById('tagList').innerHTML += `<div id="selection-${this.name}"></div>`;
+    }
+
+    closeDropdown()
+    {
+        document.getElementById(`box-${this.name}`).addEventListener("mouseleave", () => {
+            // console.log('on ferme la box');
+            document.querySelector(`#box-${this.name} .search`).style.display = "none";
+            document.querySelector(`#box-${this.name} .list`).style.display = "none";
+            document.querySelector(`#box-${this.name} .title`).style.display = "block";
+            document.querySelector(`#box-${this.name} .fa-chevron-down`).style.transform = "rotate(0deg)";
+            this.resetSearch();
+          });
+    }
+
+    async display() {
+        // Permets d'afficher les ingrédients dans des li
+        let html = ''
+        this.all.forEach(tag =>
+            {
+                let alReadySelected = this.selection.includes(tag);
+                // console.log(tag, alReadySelected);
+                html += `
+                <li class="search-item-${this.name} search-item ${(alReadySelected) ? 'allready-selected' : '' }" data-tag="${tag}">${tag}</li>`
             })
-        })
+            document.querySelector(`.search-list-${this.name}`).innerHTML = html
+    }
+
+    async dropdown() {
+        document.getElementById('filters').innerHTML += `
+            <div id="box-${this.name}" class="boxList" tabindex="1">
+                <span class="list-${this.name} padding title">${this.placeholder}</span>
+                <i class="fas fa-chevron-down movechevron"></i>
+                <input type="text" name="${this.name}" id="search-${this.name}" class="hide search"
+                    placeholder="Rechercher un ${this.placeholder}">
+                <div id="list${this.name}" class="list">
+                    <ul class="search-list-${this.name}"></ul>
+                </div>
+            </div>
+        `
     }
 
     listenForInput() {
@@ -50,8 +93,7 @@ class Filter
         })
     }
 
-    listenForTagSelection()
-    {
+    listenForTagSelection() {
         document.querySelectorAll(`.search-item-${this.name}`).forEach(button =>
             {
                 button.addEventListener('click', () =>
@@ -72,53 +114,6 @@ class Filter
                     this.listenForTagUnselect();
                 })
             })
-    }
-
-    resetSearch() {
-        this.searchTerm = '';
-        document.querySelector(`#search-${this.name}`).value = '';
-    }
-
-    display()
-    {
-        // Permets d'afficher les ingrédients dans des li
-        let html = ''
-        this.all.forEach(tag =>
-            {
-                let alReadySelected = this.selection.includes(tag);
-                // console.log(tag, alReadySelected);
-                html += `
-                <li class="search-item-${this.name} search-item ${(alReadySelected) ? 'allready-selected' : '' }" data-tag="${tag}">${tag}</li>`
-            })
-            document.querySelector(`.search-list-${this.name}`).innerHTML = html
-    }
-
-    build()
-    {
-        this.dropdown();
-        this.buildSelection();
-        this.collect(this.list.all);
-        this.display();
-        // this.showSelection();
-        this.openDropdown();
-        this.closeDropdown();
-    }
-
-    showSelection() {
-        let html = ''
-        this.selection.forEach(tag =>
-            {
-                 html += `<button class="tag-box tag-${this.name}" type="button" data-type="${this.name}" data-value="${tag}">
-                 <span>${tag}</span>
-                 <i class="far fa-times-circle fa-lg close-tag"></i>
-                 </button>`
-            })
-        document.getElementById(`selection-${this.name}`).innerHTML = html
-    }
-
-    buildSelection()
-    {
-        document.getElementById('tagList').innerHTML += `<div id="selection-${this.name}"></div>`;
     }
 
     listenForTagUnselect() {
@@ -144,44 +139,33 @@ class Filter
                     this.listenForInput();
                 })
             })
-      }
+    }
 
-    openDropdown()
-    {
+    openDropdown() {
         document.getElementById(`box-${this.name}`).addEventListener("mouseover", () => {
             // console.log('on ouvre la box');
-            document.querySelectorAll(".title")[0].style.display = "none";
-            document.querySelectorAll(".list")[0].style.display = "grid";
-            document.querySelectorAll(".search")[0].style.display = "block";
-            document.querySelectorAll(".fa-chevron-down")[0].style.transform = "rotate(180deg)";
+            document.querySelector(`#box-${this.name} .title`).style.display = "none";
+            document.querySelector(`#box-${this.name} .list`).style.display = "grid";
+            document.querySelector(`#box-${this.name} .search`).style.display = "block";
+            document.querySelector(`#box-${this.name} .fa-chevron-down`).style.transform = "rotate(180deg)";
           });
     }
 
-    closeDropdown()
-    {
-        document.getElementById(`box-${this.name}`).addEventListener("mouseleave", () => {
-            // console.log('on ferme la box');
-            document.querySelectorAll(".hide")[0].style.display = "none";
-            document.querySelectorAll(".list")[0].style.display = "none";
-            document.querySelectorAll(".title")[0].style.display = "block";
-            document.querySelectorAll(".fa-chevron-down")[0].style.transform = "rotate(0deg)";
-          });
+    resetSearch() {
+        this.searchTerm = '';
+        document.querySelector(`#search-${this.name}`).value = '';
     }
 
-    dropdown()
-    {
-        document.getElementById('filters').innerHTML += `
-        <div id="box-${this.name}" class="boxList" tabindex="1">
-                <span class="list-${this.name} padding title">${this.placeholder}</span>
-                    <i class="fas fa-chevron-down movechevron">
-                    </i>
-                    <input type="text" name="${this.name}" id="search-${this.name}" class="hide search"
-                            placeholder="Rechercher un ${this.placeholder}">
-                <div id="list${this.name}" class="list">
-                    <ul class="search-list-${this.name}"></ul>
-                </div>
-        </div>
-        `
+    showSelection() {
+        let html = ''
+        this.selection.forEach(tag =>
+            {
+                 html += `<button class="tag-box tag-${this.name}" type="button" data-type="${this.name}" data-value="${tag}">
+                 <span>${tag}</span>
+                 <i class="far fa-times-circle fa-lg close-tag"></i>
+                 </button>`
+            })
+        document.getElementById(`selection-${this.name}`).innerHTML = html
     }
 }
 

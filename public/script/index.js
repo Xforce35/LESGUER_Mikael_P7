@@ -8,16 +8,20 @@ list.hydrate(recipes);
 list.display(list.all);
 // console.log(list.all);
 
-let ingFilter = new IngFilter(list);
-ingFilter.build();
+list.addFilter(new IngFilter(list))
+list.addFilter(new ApplianceFilter(list))
+console.log(list.filters)
+
+// let ingFilter = new IngFilter(list);
+// ingFilter.build();
 // ingFilter.collect();
-ingFilter.display();
-ingFilter.listenForTagSelection();
-ingFilter.listenForInput();
+// ingFilter.display();
+// ingFilter.listenForTagSelection();
+// ingFilter.listenForInput();
 
 
-let applianceFilter = new ApplianceFilter(list);
-applianceFilter.build();
-applianceFilter.display();
-applianceFilter.listenForTagSelection();
-applianceFilter.listenForInput();
+// let applianceFilter = new ApplianceFilter(list);
+// applianceFilter.build();
+// applianceFilter.display();
+// applianceFilter.listenForTagSelection();
+// applianceFilter.listenForInput();

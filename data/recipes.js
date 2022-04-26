@@ -198,11 +198,11 @@ export const recipes = [
             },
             {
                 "ingredient": "Oeuf",
-                "quantity": "2"
+                "quantity": 2
             },
             {
                 "ingredient":"Crème fraiche",
-                "quantity":25,
+                "quantity": 25,
                 "unit": "cl"
             },
             {
@@ -242,7 +242,7 @@ export const recipes = [
             },
             {
                 "ingredient": "Beurre",
-                "quantity": "30",
+                "quantity": 30,
                 "unit": "grammes"
             },
             {
@@ -261,7 +261,7 @@ export const recipes = [
         "ingredients":[
            {
                 "ingredient": "Noix",
-                "quantity": "180",
+                "quantity": 180,
                 "unit": "grammes"
            },
            {
@@ -280,7 +280,7 @@ export const recipes = [
            },
            {
                "ingredient": "Sucre en Poudre",
-               "quantity": "110",
+               "quantity": 110,
                "unit": "grammes"
            },
            {
@@ -305,7 +305,8 @@ export const recipes = [
                 "quantity": 1
             },
             {
-                "ingredient": "Olives"
+                "ingredient": "Olives",
+                "quantity": 5
             },
             {
                 "ingredient": "Fromage de chèvre",
@@ -340,7 +341,7 @@ export const recipes = [
         "ingredients":[
             {
                 "ingredient": "Roblochon",
-                "quantity": "1"
+                "quantity": 1
             },
             {
                 "ingredient": "Pommes de terre",
@@ -349,8 +350,8 @@ export const recipes = [
             },
             {
                 "ingredient": "Jambon fumé",
-                "quantity": 2,
-                "unit": "tranches"
+                "quantity": 250,
+                "unit": "grammes"
             },
             {
                 "ingredient": "Oignon",
@@ -426,8 +427,8 @@ export const recipes = [
             },
             {
                 "ingredient": "Eau",
-                "quantity" : "0.5",
-                "unit" : "tasses"
+                "quantity" : 500,
+                "unit" : "ml"
             }
         ],
         "time": 40,
@@ -492,7 +493,7 @@ export const recipes = [
             },
             {
                 "ingredient": "Fromage à raclette",
-                "quantity": 300,
+                "quantity": 100,
                 "unit":"grammes"
             },
             {
@@ -501,7 +502,7 @@ export const recipes = [
             },
             {
                 "ingredient": "Beurre",
-                "quantity": 75,
+                "quantity": 20,
                 "unit": "grammes"
             }
 
@@ -610,7 +611,9 @@ export const recipes = [
                 "quantity": 8
             },
             {
-                "ingredient": "Menthe"
+                "ingredient": "Menthe",
+                "quantity": 2,
+                "unit":"feuilles"
             }
         ],
         "time": 15,
@@ -749,7 +752,7 @@ export const recipes = [
         ],
         "time": 30,
         "description":"Cuisiner la viande hachée dans une poelle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oigons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraiche à la viande hachée. Serivir.",
-        "appliance": "Casserolle.",
+        "appliance": "Casserolle",
         "ustensils":["Cuillère en bois", "louche", "couteau"]
     },
     {
@@ -915,7 +918,9 @@ export const recipes = [
                 "quantity": 1
             },
             {
-                "ingredient": "Huile d'olives"
+                "ingredient": "Huile d'olives",
+                "quantity": 2,
+                "unit": "cuilleres a soupe"
             },
             {
                 "ingredient": "Oignon",
@@ -1009,22 +1014,26 @@ export const recipes = [
             {
                 "ingredient": "Pois chiches",
                 "quantity": 1,
-                "unit": "boites"
+                "unit": "boite"
             },
             {
                 "ingredient": "Ail",
                 "quantity": 1,
-                "unit": "gousses"
+                "unit": "gousse"
             },
             {
                 "ingredient": "Citron",
                 "quantity": 2
             },
             {
-                "ingredient": "Huile d'olive"
+                "ingredient": "Huile d'olive",
+                "quantity": 2,
+                "unit": "cuillere a soupe"
             },
             {
-                "ingredient": "Paprika"
+                "ingredient": "Paprika",
+                "quantity": 1,
+                "unit": "cuillere a soupe"
             }
         ],
         "time": 30,
@@ -1183,7 +1192,9 @@ export const recipes = [
                 "unit": "cl"
             },
             {
-                "ingredient": "Huile d'olive"
+                "ingredient": "Huile d'olive",
+                "quantity": 1,
+                "unit": "cuillere a soupe"
             },
             {
                 "ingredient": "Orange",
@@ -1482,7 +1493,8 @@ export const recipes = [
                 "quantity": 3
             },
             {
-                "ingredient": "Citron"
+                "ingredient": "Citron",
+                "quantity": 2
             }
         ],
         "time": 50,
@@ -1726,7 +1738,7 @@ export const recipes = [
             }
         ],
         "time": 60,
-        "description":"Préparer la frangipane : Mélanger le sucre la poudre d'amander, le beurre et les oeufs. Etaler la moitier de la pate feuilleté et mettre dans un moule à tarte. Garnir de frangipane et recouvrir du reste de pate feuilletée. Mettre au four 30 minutes",
+        "description":"Préparer la frangipane : Mélanger le sucre la poudre d'amande, le beurre et les oeufs. Etaler la moitier de la pate feuilleté et mettre dans un moule à tarte. Garnir de frangipane et recouvrir du reste de pate feuilletée. Mettre au four 30 minutes",
         "appliance": "Four",
         "ustensils":["rouleau à patisserie","fouet"]
     }
