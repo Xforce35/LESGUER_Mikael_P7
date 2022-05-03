@@ -14,12 +14,14 @@ class ApplianceFilter extends Filter
     { 
         this.all = [];
         recipes.forEach(recipe => {
-            this.all.push(recipe.appliance.toLowerCase());
-            // console.log(recipe.appliance);
+            let item = recipe.appliance.toLowerCase()
+            if (!this.all.includes(item)) {
+                this.all.push(item);
+            }
         })
     }
 
-    // trouver toutes les recettes avec tous les ingrédients séléctionnés
+    // trouver toutes les recettes avec l'appareil séléctionné
     filter(recipes)
     {
         let list = [];
@@ -27,23 +29,20 @@ class ApplianceFilter extends Filter
             return recipes;
         }
         list = this.list.all.filter((recipe) => {
-            console.log(recipe.appliance.map(item));
-            // let listAppliance = recipe.appliance.map((item) =>
-            // item.appliance.toLowerCase()
-            // );
+            let listAppliance = recipe.appliance.toLowerCase();
 
-            // let count = 0;
+            let count = 0;
 
-            // this.selection.forEach((applianceSelect) => {
-            //     if (listAppliance.includes(applianceSelect.toLowerCase())) {
-            //         count++;
-            //     }
-            // });
+            this.selection.forEach((applianceSelect) => {
+                if (listAppliance.includes(applianceSelect.toLowerCase())) {
+                    count++;
+                }
+            });
 
-            // if (count == this.selection.length) {
-            //     return true;
-            // }
-            // return false;
+            if (count == this.selection.length) {
+                return true;
+            }
+            return false;
         });
 
         return list;

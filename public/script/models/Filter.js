@@ -23,7 +23,7 @@ class Filter
         this.openDropdown();
         this.closeDropdown();
         await this.display();
-        this.listenForTagSelection();
+        await this.listenForTagSelection();
         this.listenForInput();
     }
 
@@ -93,7 +93,7 @@ class Filter
         })
     }
 
-    listenForTagSelection() {
+    async listenForTagSelection() {
         document.querySelectorAll(`.search-item-${this.name}`).forEach(button =>
             {
                 button.addEventListener('click', () =>
