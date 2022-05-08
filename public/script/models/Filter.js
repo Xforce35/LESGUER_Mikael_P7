@@ -41,6 +41,7 @@ class Filter
             document.querySelector(`#box-${this.name} .title`).style.display = "block";
             document.querySelector(`#box-${this.name} .fa-chevron-down`).style.transform = "rotate(0deg)";
             this.resetSearch();
+            this.display();
           });
     }
 
@@ -105,13 +106,14 @@ class Filter
                         this.selection.push(tag);
                     }
                     console.log(tag, this.selection);
-                    let filteredRecipes = this.filter();
-                    this.list.display(filteredRecipes);
-                    this.collect(filteredRecipes);
-                    this.display();
-                    this.listenForTagSelection();
-                    this.showSelection();
-                    this.listenForTagUnselect();
+                    this.list.filter();
+                    // let filteredRecipes = this.filter();
+                    // this.list.display(filteredRecipes);
+                    // this.collect(filteredRecipes);
+                    // this.display();
+                    // this.listenForTagSelection();
+                    // this.showSelection();
+                    // this.listenForTagUnselect();
                 })
             })
     }
@@ -123,20 +125,22 @@ class Filter
             {
                 el.addEventListener("click", () => 
                 {
+                    this.resetSearch();
                     let tag = el.getAttribute('data-value');
                     // console.log(tag);
                     let index = this.selection.findIndex(item => item == tag)
                     // console.log(index);
                     this.selection.splice(index, 1);
-                    this.showSelection();
-                    this.listenForTagUnselect();
-                    let a = this.filter(this.list.all);
-                    // console.log('a', a);
-                    this.list.display(a);
-                    this.collect(a);
-                    this.display();
-                    this.listenForTagSelection();
-                    this.listenForInput();
+                    this.list.filter(true);
+                    // this.showSelection();
+                    // this.listenForTagUnselect();
+                    // let a = this.filter(this.list.all);
+                    // // console.log('a', a);
+                    // this.list.display(a);
+                    // this.collect(a);
+                    // this.display();
+                    // this.listenForTagSelection();
+                    // this.listenForInput();
                 })
             })
     }

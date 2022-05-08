@@ -14,6 +14,8 @@ class list
             let recipe = new Recipe (item);
             this.all.push(recipe)
         })
+
+        this.filtered = this.all;
     }
 
     display(recipes)
@@ -33,9 +35,30 @@ class list
         filter.build()
     }
 
-    filter()
+    filter(isUnselect = false)
     {
-        //this.filters.
+        if (isUnselect)
+        {
+            this.filtered = this.all;
+        }
+
+        this.filters.forEach(filter => 
+            {
+                // console.log(filter);
+                this.filtered = filter.filter(this.filtered);
+                // console.log(filter.name ,this.filtered);
+            })
+            
+            this.display(this.filtered);
+
+            this.filters.forEach(filter => 
+                {
+                filter.collect(this.filtered);
+                filter.display();
+                filter.listenForTagSelection();
+                filter.showSelection();
+                filter.listenForTagUnselect();
+                })
     }
 }
 

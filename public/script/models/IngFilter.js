@@ -29,11 +29,10 @@ class IngFilter extends Filter
     // trouver toutes les recettes avec tous les ingrédients séléctionnés
     filter(recipes)
     {
-        let list = [];
         if (this.selection.length === 0) {
             return recipes;
         }
-        list = this.list.all.filter((recipe) => {
+        return recipes.filter((recipe) => {
             let listIngredients = recipe.ingredients.map((item) =>
             item.ingredient.toLowerCase()
             );
@@ -52,7 +51,6 @@ class IngFilter extends Filter
             return false;
         });
 
-        return list;
     }
 }
 

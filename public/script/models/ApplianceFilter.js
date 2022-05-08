@@ -24,11 +24,10 @@ class ApplianceFilter extends Filter
     // trouver toutes les recettes avec l'appareil séléctionné
     filter(recipes)
     {
-        let list = [];
         if (this.selection.length === 0) {
             return recipes;
         }
-        list = this.list.all.filter((recipe) => {
+        return recipes.filter((recipe) => {
             let listAppliance = recipe.appliance.toLowerCase();
 
             let count = 0;
@@ -45,7 +44,6 @@ class ApplianceFilter extends Filter
             return false;
         });
 
-        return list;
     }
 }
 
