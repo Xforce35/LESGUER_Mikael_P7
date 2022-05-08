@@ -35,6 +35,7 @@ class IngFilter extends Filter
         return recipes.filter((recipe) => {
             let listIngredients = recipe.ingredients.map((item) =>
             item.ingredient.toLowerCase()
+           
             );
 
             let count = 0;
