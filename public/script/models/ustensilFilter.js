@@ -33,8 +33,8 @@ class UstensilFilter extends Filter
             return recipes;
         }
         return recipes.filter((recipe) => {
-            let listUstensils = recipe.ustensils.map((item) =>
-            item.ustensil.toLowerCase()
+            let listUstensils = recipe.ustensils.map((ustensil) =>
+            ustensil.toLowerCase()
         );
 
             let count = 0;
