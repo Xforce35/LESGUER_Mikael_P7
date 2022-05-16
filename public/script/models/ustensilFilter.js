@@ -7,8 +7,6 @@ class UstensilFilter extends Filter
         super(list)
         this.name = 'ustensils';
         this.placeholder = 'ustensile';
-        // this.color = 'blue';
-       
     }
 
     collect(recipes)

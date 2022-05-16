@@ -5,7 +5,9 @@ class list
     constructor()
     {
         this.all = [];
+        this.filtered = [];
         this.filters = [];
+        this.needle = '';
     }
 
     hydrate(recipes)
@@ -52,13 +54,58 @@ class list
             this.display(this.filtered);
 
             this.filters.forEach(filter => 
-                {
+            {
                 filter.collect(this.filtered);
                 filter.display();
-                filter.listenForTagSelection();
                 filter.showSelection();
+                filter.listenForTagSelection();                
                 filter.listenForTagUnselect();
+            })
+    }
+
+    listenForSearch() 
+    {
+        document.getElementById('search').addEventListener('input', (e) => {
+            console.log(e.target.value);
+            let search = e.target.value.toLowerCase();
+            if (search.length < 3) 
+            {
+                return
+            }
+
+            // const recipes = this.all;
+
+            // if (this.needle.length <= search.length)
+            // {   
+                
+            //     return (recipes = this.filtered);
+                
+            // }
+
+            console.log('a', search.length);
+            this.filtered = this.search(recipes);
+            console.log('B', this.filtered);
+            this.filter();
+            
+        })
+    }
+
+    search(recipes)
+    {
+        
+            if (search.length >= 3)
+            {
+                recipes.filter((recipe) =>
+                {
+                    return (
+                    recipe.name.toLowerCase().includes(search)
+                    )
                 })
+            }
+
+            return false;
+
+        
     }
 }
 

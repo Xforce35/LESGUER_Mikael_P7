@@ -79,7 +79,7 @@ class Filter
             {
                 this.all.forEach(tag =>
                 {
-                    document.querySelector(`.search-item-${this.name}[data-tag="${tag}"]`).classList.remove('hidden');
+                    document.querySelector(`.search-item-${this.name}[data-tag="${tag}"]`).classList.remove('hide');
                 })
             }
 
@@ -88,7 +88,7 @@ class Filter
             this.all.forEach(tag => {
                 if (!tag.includes(this.searchTerm))
                 {
-                    document.querySelector(`.search-item-${this.name}[data-tag="${tag}"]`).classList.add('hidden');
+                    document.querySelector(`.search-item-${this.name}[data-tag="${tag}"]`).classList.add('hide');
                 }
            })
         })
@@ -107,6 +107,7 @@ class Filter
                     }
                     console.log(tag, this.selection);
                     this.list.filter();
+                    this.closeDropdown();
                     // let filteredRecipes = this.filter();
                     // this.list.display(filteredRecipes);
                     // this.collect(filteredRecipes);
@@ -152,6 +153,7 @@ class Filter
             document.querySelector(`#box-${this.name} .list`).style.display = "grid";
             document.querySelector(`#box-${this.name} .search`).style.display = "block";
             document.querySelector(`#box-${this.name} .fa-chevron-down`).style.transform = "rotate(180deg)";
+            this.listenForTagSelection();
           });
     }
 
