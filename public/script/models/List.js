@@ -7,7 +7,6 @@ class list
         this.all = [];
         this.filtered = [];
         this.filters = [];
-        this.needle = '';
     }
 
     hydrate(recipes)
@@ -37,41 +36,56 @@ class list
         filter.build()
     }
 
-    filter(isUnselect = false)
+    filter()
     {
-        if (isUnselect)
+        this.filtered = this.all;
+        let search = document.getElementById('search').value.toLowerCase();
+        let MsgNoResult = document.querySelector("#no-results")
+
+        
+
+        if (search.length > 3)
         {
-            this.filtered = this.all;
+            this.filtered = this.search(search)
+            console.log('Recettes Trouvé');
+            MsgNoResult.style.display = "none";
+            return true;
         }
 
-        this.filters.forEach(filter => 
-            {
-                // console.log(filter);
-                this.filtered = filter.filter(this.filtered);
-                // console.log(filter.name ,this.filtered);
-            })
-            
-            this.display(this.filtered);
+        
+        
 
-            this.filters.forEach(filter => 
-            {
-                filter.collect(this.filtered);
-                filter.display();
-                filter.showSelection();
-                filter.listenForTagSelection();                
-                filter.listenForTagUnselect();
-            })
+        this.filters.forEach(filter => 
+        {
+            // console.log(filter);
+            this.filtered = filter.filter(this.filtered);
+            // console.log(filter.name ,this.filtered);
+        })
+        this.display(this.filtered);
+
+        this.filters.forEach(filter => 
+        {
+            filter.collect(this.filtered);
+            filter.display();
+            filter.showSelection();
+            filter.listenForTagSelection();                
+            filter.listenForTagUnselect();
+        })
+        console.log('Aucune recettes');
+        MsgNoResult.style.display = "block";
+        return false;
     }
 
     listenForSearch() 
     {
         document.getElementById('search').addEventListener('input', (e) => {
-            console.log(e.target.value);
-            let search = e.target.value.toLowerCase();
-            if (search.length < 3) 
-            {
-                return
-            }
+            this.filter()
+            // console.log(e.target.value);
+            // let search = e.target.value.toLowerCase();
+            // if (search.length < 3) 
+            // {
+            //     return
+            // }
 
             // const recipes = this.all;
 
@@ -82,28 +96,38 @@ class list
                 
             // }
 
-            console.log('a', search.length);
-            this.filtered = this.search(recipes);
-            console.log('B', this.filtered);
-            this.filter();
+            // console.log('a', search.length);
+            // this.filtered = this.search(recipes);
+            // console.log('B', this.filtered);
+            // this.filter();
             
         })
     }
 
-    search(recipes)
+    search(search)
     {
+        return this.filtered.filter((recipe) =>
         
-            if (search.length >= 3)
-            {
-                recipes.filter((recipe) =>
-                {
-                    return (
-                    recipe.name.toLowerCase().includes(search)
-                    )
-                })
-            }
+        {
+            return (
+                recipe.name.toLowerCase().includes(search) ||
+                recipe.description.toLowerCase().includes(search) ||
+                recipe.ingredients.find((ingredient) => ingredient.ingredient.toLowerCase().includes(search)) ||
+                recipe.ustensils.find((ustensils) => ustensils.toLowerCase().includes(search)) ||
+                recipe.appliance.toLowerCase().includes(search)
+                )
+        })
+            // if (search.length >= 3)
+            // {
+            //     recipes.filter((recipe) =>
+            //     {
+            //         return (
+            //         recipe.name.toLowerCase().includes(search)
+            //         )
+            //     })
+            // }
 
-            return false;
+            // return false;
 
         
     }
