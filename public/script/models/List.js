@@ -21,6 +21,8 @@ class list
 
     display(recipes)
     {
+        document.querySelector("#no-results").style.display = "none";
+
         let html = '';
         recipes.forEach (recipe =>
             {
@@ -28,6 +30,12 @@ class list
             })
     
             document.getElementById("recipes").innerHTML = html
+
+            if (recipes.length === 0)
+            {
+                console.log('on doit afficher zero patatte')
+                document.querySelector("#no-results").style.display = "block";
+            }
     }
 
     addFilter(filter)
@@ -40,20 +48,15 @@ class list
     {
         this.filtered = this.all;
         let search = document.getElementById('search').value.toLowerCase();
-        let MsgNoResult = document.querySelector("#no-results")
-
         
-
         if (search.length > 3)
         {
-            this.filtered = this.search(search)
-            console.log('Recettes Trouvé');
-            MsgNoResult.style.display = "none";
-            return true;
+            console.group(search)
+            console.time()
+            this.filtered = this.searchAlt(search)
+            console.timeEnd()
+            console.groupEnd(search)
         }
-
-        
-        
 
         this.filters.forEach(filter => 
         {
@@ -71,9 +74,6 @@ class list
             filter.listenForTagSelection();                
             filter.listenForTagUnselect();
         })
-        console.log('Aucune recettes');
-        MsgNoResult.style.display = "block";
-        return false;
     }
 
     listenForSearch() 
@@ -112,9 +112,7 @@ class list
             return (
                 recipe.name.toLowerCase().includes(search) ||
                 recipe.description.toLowerCase().includes(search) ||
-                recipe.ingredients.find((ingredient) => ingredient.ingredient.toLowerCase().includes(search)) ||
-                recipe.ustensils.find((ustensils) => ustensils.toLowerCase().includes(search)) ||
-                recipe.appliance.toLowerCase().includes(search)
+                recipe.ingredients.find((ingredient) => ingredient.ingredient.toLowerCase().includes(search)) 
                 )
         })
             // if (search.length >= 3)
@@ -130,6 +128,65 @@ class list
             // return false;
 
         
+    }
+
+    searchAlt(search)
+    {
+        // let final = [];
+        // for (let i = 0; i < this.filtered.length; i++)
+        // {
+        //     let recipe = this.filtered[i];
+        //     if (
+        //         recipe.name.toLowerCase().includes(search) ||
+        //         recipe.description.toLowerCase().includes(search) ||
+        //         recipe.ingredients.find((ingredient) => ingredient.ingredient.toLowerCase().includes(search))
+        //     )
+        //     {
+        //         final.push(recipe)
+        //     }
+        // }
+
+        // return final
+
+        let final = [];
+
+        for (let i = 0; i < this.filtered.length; i++)
+        {
+            // console.log(i);
+            let recipe = this.filtered[i];
+            if (this.match(recipe, search))
+            {
+                final.push(recipe);
+            }
+        }
+
+        // console.log(final);
+        return final;
+    }
+
+    match(recipe, search)
+    {
+        if (recipe.name.toLowerCase().includes(search))
+            {
+                return true;
+            }
+
+            if (recipe.description.toLowerCase().includes(search))
+            {
+                return true;
+            }
+
+            // console.log(recipe.ingredients);
+            for (let j = 0; j < recipe.ingredients.length; j++)
+            {
+                let ingredient = recipe.ingredients[j].ingredient.toLowerCase();
+                // console.log(ingredient, search, ingredient.includes(search));
+                if (ingredient.includes(search))
+                {
+                    return true;
+                }
+            }
+        return false;
     }
 }
 
